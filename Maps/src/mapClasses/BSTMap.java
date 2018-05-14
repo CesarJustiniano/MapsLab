@@ -85,7 +85,21 @@ public class BSTMap<K, V> implements Map<K, V> {
 		// invoking operations from the BSTLinkedBinaryTree, applying 
 		// them to instance field tree.... EXERCISE 1
 		//...
-		return null;    // for the moment...
+		Entry<K,V> ntr = new MapEntry<>(key, value);
+		V originalValue = get(key);
+		
+		
+		if(originalValue == null){
+			tree.addElement(ntr);
+			return null;
+		}
+		
+		Entry<K,V> position = new MapEntry<>(key, originalValue);
+			
+		tree.getPosition(position).setElement(ntr);
+		
+		return originalValue;
+		
 	}
 
 
@@ -98,7 +112,14 @@ public class BSTMap<K, V> implements Map<K, V> {
 		// invoking operations from the BSTLinkedBinaryTree, appying 
 		// them to instance field tree.... EXERCISE 1
 		//...
-		return null;    // for the moment...
+		V value = get(key);
+		
+		if(value != null){
+			Entry<K,V> ntr = new MapEntry<>(key, value);
+			tree.removeElement(ntr);
+		}
+			
+		return value; 		
 	}
 
 
@@ -109,7 +130,13 @@ public class BSTMap<K, V> implements Map<K, V> {
 		// them to instance field tree.... In this case you will need another
 		// inner class......   EXERCISE 2
 		//...
-		return null;    // for the moment...
+		
+		ArrayList<K> keys = new ArrayList<>();
+		
+		for (Position<Entry<K, V>> p : tree.positions())
+			keys.add(p.getElement().getKey()); 
+
+		return keys;
 	}
 
 
@@ -120,7 +147,12 @@ public class BSTMap<K, V> implements Map<K, V> {
 		// them to instance field tree.... In this case you will need another
 		// inner class......  EXERCISE 2
 		//...
-		return null;    // for the moment...
+		ArrayList<V> values = new ArrayList<>();
+		
+		for (Position<Entry<K, V>> p : tree.positions())
+			values.add(p.getElement().getValue()); 
+
+		return values;
 	}
 
 	@Override

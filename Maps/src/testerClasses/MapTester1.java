@@ -45,6 +45,10 @@ public class MapTester1 {
 		map.remove(1); 
 		showMap("Map content after removing 1 ...", map); 
 		
+		showMapValues("List of Values: ", map);
+		
+		showMapKeys("List of Keys: ",map);
+		
 		
 		showMapEntries("Entries in the map (visiting nodes in inorder)", map); 
 	}
